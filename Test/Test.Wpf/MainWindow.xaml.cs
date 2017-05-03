@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Msagl.Drawing;
 using Microsoft.Msagl.WpfGraphControl;
+using Test.PathFinder;
 
 namespace Test.Wpf
 {
@@ -53,6 +54,9 @@ namespace Test.Wpf
             }
             graph.Attr.LayerDirection = LayerDirection.LR;
             graphViewer.Graph = graph; // throws exception
+      
+            var searcher = new DefaultSearcher(data);
+            var result = searcher.Search("1", "7");
         }
     }
 }

@@ -9,7 +9,14 @@ namespace Test.PathFinder
 {
     public class DefaultSearcher
     {
-        public static List<string> Search(Graph graph, string start, string stop)
+        private Graph graph;
+
+        public DefaultSearcher(Graph graph)
+        {
+            this.graph = graph;
+        }
+
+        public List<string> Search(string start, string stop)
         {
             var nodesDictionary = new Dictionary<int, Node>();
             var labelsDictionary = new Dictionary<string, int>();
@@ -20,18 +27,18 @@ namespace Test.PathFinder
                 labelsDictionary.Add(node.UniqueId, index);
                 index++;
             }
-            int[,] adjanciesMatrix = new int[index + 1, index + 1];
+            int[,] adjanciesMatrix = new int[index, index];
             foreach (var adj  in  graph.Adjacencies)
             {
                 adjanciesMatrix[labelsDictionary[adj.Key], labelsDictionary[adj.Value]] = 1;
                 adjanciesMatrix[labelsDictionary[adj.Value], labelsDictionary[adj.Key]] = 1;
             }
-            var result = Search(adjanciesMatrix, labelsDictionary[start], labelsDictionary[stop]);
+            var result = Search(adjanciesMatrix, labelsDictionary[start], labelsDictionary[stop],index);
 
             return  result.Select(node => nodesDictionary[node].UniqueId).ToList();
         }
 
-        private List<int> Search(int[,] adjaciesMatrix, int start, int stop)
+        private  List<int> Search(int[,] adjaciesMatrix, int start, int stop,int size)
         {
             var result = new List<int>();
             Queue<int> nodesNotVisited = new Queue<int>();
@@ -46,7 +53,7 @@ namespace Test.PathFinder
                 {
                     break;
                 }
-                for (short j = 0; j < adjaciesMatrix.Length; j++)
+                for (short j = 0; j < size; j++)
                 {
                     if (adjaciesMatrix[index, j] != 0)
                     {

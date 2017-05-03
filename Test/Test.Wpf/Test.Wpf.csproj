@@ -125,6 +125,10 @@
       <Project>{daf09380-db26-4c9d-ac25-863688922b63}</Project>
       <Name>Test.Database</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Test.PathFinder\Test.PathFinder.csproj">
+      <Project>{061bed7d-0196-4005-93dd-79001f19aa9d}</Project>
+      <Name>Test.PathFinder</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Test.XmlReader\Test.XmlReader.csproj">
       <Project>{1c307349-79cb-4030-bb47-d0a056e7b6cc}</Project>
       <Name>Test.XmlReader</Name>

@@ -1,44 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Test.Common.Enities;
 
 namespace Test.PathFinder
 {
-    public class DefaultFinder
+    public class DefaultFinder:BaseFinder
     {
-        private Graph graph;
-
-        public DefaultFinder(Graph graph)
+        public DefaultFinder(Graph graph) : base(graph)
         {
-            this.graph = graph;
         }
 
-        public List<string> Search(string start, string stop)
-        {
-            var nodesDictionary = new Dictionary<int, Node>();
-            var labelsDictionary = new Dictionary<string, int>();
-            int index = 0;
-            foreach (var node in graph.NodesList.Values)
-            {
-                nodesDictionary.Add(index, node);
-                labelsDictionary.Add(node.UniqueId, index);
-                index++;
-            }
-            int[,] adjanciesMatrix = new int[index, index];
-            foreach (var adj  in  graph.Adjacencies)
-            {
-                adjanciesMatrix[labelsDictionary[adj.Key], labelsDictionary[adj.Value]] = 1;
-                adjanciesMatrix[labelsDictionary[adj.Value], labelsDictionary[adj.Key]] = 1;
-            }
-            var result = Search(adjanciesMatrix, labelsDictionary[start], labelsDictionary[stop],index);
-
-            return  result.Select(node => nodesDictionary[node].UniqueId).ToList();
-        }
-
-        private  List<int> Search(int[,] adjaciesMatrix, int start, int stop,int size)
+        protected  override List<int> Find(int[,] adjaciesMatrix, int start, int stop,int size)
         {
             var result = new List<int>();
             Queue<int> nodesNotVisited = new Queue<int>();

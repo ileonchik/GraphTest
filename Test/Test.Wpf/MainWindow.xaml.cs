@@ -55,7 +55,7 @@ namespace Test.Wpf
             graphViewer.Graph = graph; 
       
             var searcher = new DefaultFinder(data);
-            var result = searcher.Search("1", "7");
+            var result = searcher.Find("1", "7");
             ShowPath(graphViewer, data, result);
         }
 

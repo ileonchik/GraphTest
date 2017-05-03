@@ -45,6 +45,7 @@
     <Compile Include="Enities\DbNode.cs" />
     <Compile Include="Enities\Node.cs" />
     <Compile Include="Enities\Graph.cs" />
+    <Compile Include="Interfaces\IFinder.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

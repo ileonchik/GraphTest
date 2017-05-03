@@ -43,9 +43,13 @@ namespace Test.Wpf
             graphViewer.BindToPanel(Panel);
             Graph graph = new Graph();
 
+            foreach (var node in data.NodesList.Values)
+            {
+                graph.AddNode(new Node(node.UniqueId) {LabelText = node.Label});
+            }
             foreach (var adj in data.Adjacencies)
             {
-                graph.AddEdge(adj.Key,adj.Value);
+                graph.AddEdge(adj.Key, adj.Value);
             }
             graph.Attr.LayerDirection = LayerDirection.LR;
             graphViewer.Graph = graph; // throws exception

@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Test.Common.Enities;
 using Test.Common.Interfaces;
 using Test.Database;
+using Test.XmlReader;
 
 namespace Test.Wpf
 {
@@ -16,11 +19,18 @@ namespace Test.Wpf
             Graph result;
             List<KeyValuePair<string,string>> adjacencies= new List<KeyValuePair<string, string>>();
             List<Node> nodes;
-            using (var ctx = new TestDbContext())
-            {
-                result = new Graph(ctx.Adjacencies.ToList(),ctx.Nodes.ToList());
-            }
-            return result;
+            /*   using (var ctx = new TestDbContext())
+               {
+                   result = new Graph(ctx.Adjacencies.ToList(),ctx.Nodes.ToList());
+               }
+            return result;*/
+            var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            var files = Directory.GetFiles(path, "*.xml");
+            NodesReader nodeasReader = new NodesReader();
+            return  nodeasReader.Read(files);
+
+        
+            
         }
     }
 }

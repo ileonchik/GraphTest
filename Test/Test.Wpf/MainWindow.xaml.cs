@@ -52,10 +52,10 @@ namespace Test.Wpf
                 graph.AddEdge(adj.Key, adj.Value);
             }
             graph.Attr.LayerDirection = LayerDirection.LR;
-            graphViewer.Graph = graph; 
-      
-            var searcher = new DefaultFinder(data);
-            var result = searcher.Find("1", "7");
+            graphViewer.Graph = graph;
+
+            var finder = FinderFactory.GetFinder(FinderType.Dijkstra, data);
+            var result= finder.Find("1", "7");
             ShowPath(graphViewer, data, result);
         }
 

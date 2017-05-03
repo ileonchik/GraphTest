@@ -8,7 +8,6 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -53,10 +52,33 @@ namespace Test.Wpf
                 graph.AddEdge(adj.Key, adj.Value);
             }
             graph.Attr.LayerDirection = LayerDirection.LR;
-            graphViewer.Graph = graph; // throws exception
+            graphViewer.Graph = graph; 
       
             var searcher = new DefaultFinder(data);
             var result = searcher.Search("1", "7");
+            ShowPath(graphViewer, data, result);
         }
+
+        private void ShowPath(GraphViewer graphViewer, Test.Common.Enities.Graph data, List<string> way)
+        {
+            Graph graph = new Graph();
+
+            foreach (var nodeData in data.NodesList.Values)
+            {
+                var node = new Node(nodeData.UniqueId) { LabelText = nodeData.Label };
+                node.Attr.FillColor = way.Contains(nodeData.UniqueId) ? Color.DarkGray : Color.White;
+                graph.AddNode(node);
+            }
+            foreach (var adj in data.Adjacencies)
+            {
+                var edge = graph.AddEdge(adj.Key, adj.Value);
+                edge.Attr.Color = way.Contains(adj.Key) && way.Contains(adj.Value) ? Color.Gray : Color.Black;
+            }
+            graph.Attr.LayerDirection = LayerDirection.LR;
+            graphViewer.Graph = graph;
+
+        }
+
+
     }
 }

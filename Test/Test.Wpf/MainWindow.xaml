@@ -15,6 +15,9 @@
             <ColumnDefinition Width="109*"/>
             <ColumnDefinition Width="112*"/>
         </Grid.ColumnDefinitions>
-
+       
+        <DockPanel x:Name="panel" Grid.ColumnSpan="6" HorizontalAlignment="Left" Height="236" LastChildFill="False" Margin="51,33,0,0" VerticalAlignment="Top" Width="401"/>
+     
+        <Button x:Name="calculatePathButton" Content="Calculate Path" Grid.Column="5" HorizontalAlignment="Left" Margin="24.6,294,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </Window>

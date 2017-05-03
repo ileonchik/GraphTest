@@ -5,6 +5,8 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using Microsoft.Msagl.WpfGraphControl;
 
 namespace Test.Wpf
 {
@@ -13,5 +15,7 @@ namespace Test.Wpf
     /// </summary>
     public partial class App : Application
     {
+     
+  
     }
 }

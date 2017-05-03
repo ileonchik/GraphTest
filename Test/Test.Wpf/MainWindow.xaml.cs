@@ -22,12 +22,34 @@ namespace Test.Wpf
     /// </summary>
     public partial class MainWindow : Window
     {
-        DockPanel Panel = new DockPanel();
+        Grid mainGrid = new Grid();
+        DockPanel graphViewerPanel = new DockPanel();
+        ToolBar toolBar = new ToolBar();
+        GraphViewer graphViewer = new GraphViewer();
         public MainWindow()
         {
             InitializeComponent();
-            this.Content = Panel;
+  
+            Button calculate = new Button();
+            calculate.Click+=CalculateOnClick;
             Loaded += Window_Loaded;
+            graphViewerPanel.ClipToBounds = true;
+            mainGrid.Children.Add(toolBar);
+            toolBar.VerticalAlignment = VerticalAlignment.Top;
+
+            mainGrid.Children.Add(graphViewerPanel);
+            graphViewer.BindToPanel(graphViewerPanel);
+            Content = mainGrid;
+
+        }
+
+        private void CalculateOnClick(object sender, RoutedEventArgs routedEventArgs)
+        {
+            var respository = new GraphRepository();
+            var data = respository.Get();
+            var finder = FinderFactory.GetFinder(FinderType.Dijkstra, data);
+            var result = finder.Find(start, stop);
+            ShowPath(graphViewer, data, result, start, stop);
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
@@ -35,12 +57,13 @@ namespace Test.Wpf
 
         }
 
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+
             var respository = new GraphRepository();
             var data = respository.Get();
-            GraphViewer graphViewer = new GraphViewer();
-            graphViewer.BindToPanel(Panel);
+
             Graph graph = new Graph();
 
             foreach (var node in data.NodesList.Values)
@@ -53,20 +76,51 @@ namespace Test.Wpf
             }
             graph.Attr.LayerDirection = LayerDirection.LR;
             graphViewer.Graph = graph;
-
-            var finder = FinderFactory.GetFinder(FinderType.Dijkstra, data);
-            var result= finder.Find("1", "7");
-            ShowPath(graphViewer, data, result);
+            graphViewer.MouseDown += graphViewer_MouseDown;
+       
         }
 
-        private void ShowPath(GraphViewer graphViewer, Test.Common.Enities.Graph data, List<string> way)
+        private string start;
+        private string stop;
+        void graphViewer_MouseDown(object sender, MsaglMouseEventArgs e)
+        {
+            
+            var node = graphViewer.ObjectUnderMouseCursor as IViewerNode;
+            if (node != null)
+            {
+                if (string.IsNullOrEmpty(start))
+                {
+                    var drawingNode = (Node) node.DrawingObject;
+                    drawingNode.Attr.FillColor = Color.Green;
+                    start = node.Node.Id;
+                }
+                else
+                {
+                    var drawingNode = (Node)node.DrawingObject;
+                    drawingNode.Attr.FillColor = Color.Red;
+                    stop = node.Node.Id;
+                }
+            }
+        }
+
+        private void ShowPath(GraphViewer graphViewer, Test.Common.Enities.Graph data, List<string> way, string start, string stop)
         {
             Graph graph = new Graph();
 
             foreach (var nodeData in data.NodesList.Values)
             {
                 var node = new Node(nodeData.UniqueId) { LabelText = nodeData.Label };
-                node.Attr.FillColor = way.Contains(nodeData.UniqueId) ? Color.DarkGray : Color.White;
+                if ((nodeData.UniqueId != start) && (nodeData.UniqueId != stop))
+                {
+                    node.Attr.FillColor = way.Contains(nodeData.UniqueId) ? Color.DarkGray : Color.White;
+                }
+                else
+                {
+                    node.Attr.FillColor = nodeData.UniqueId == start ? Color.Green : Color.Red;
+                }
+
+             
+              
                 graph.AddNode(node);
             }
             foreach (var adj in data.Adjacencies)
@@ -78,6 +132,8 @@ namespace Test.Wpf
             graphViewer.Graph = graph;
 
         }
+
+
 
 
     }

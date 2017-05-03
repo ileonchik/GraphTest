@@ -6,18 +6,5 @@
         xmlns:local="clr-namespace:Test.Wpf"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded">
-    <Grid Loaded="Grid_Loaded">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="104*"/>
-            <ColumnDefinition Width="12*"/>
-            <ColumnDefinition Width="57*"/>
-            <ColumnDefinition Width="124*"/>
-            <ColumnDefinition Width="109*"/>
-            <ColumnDefinition Width="112*"/>
-        </Grid.ColumnDefinitions>
-       
-        <DockPanel x:Name="panel" Grid.ColumnSpan="6" HorizontalAlignment="Left" Height="236" LastChildFill="False" Margin="51,33,0,0" VerticalAlignment="Top" Width="401"/>
-     
-        <Button x:Name="calculatePathButton" Content="Calculate Path" Grid.Column="5" HorizontalAlignment="Left" Margin="24.6,294,0,0" VerticalAlignment="Top" Width="75"/>
-    </Grid>
+
 </Window>

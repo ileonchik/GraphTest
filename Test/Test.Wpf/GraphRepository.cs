@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using Test.Common.Enities;
 using Test.Common.Interfaces;
-using Test.Database;
 using Test.XmlReader;
 
 namespace Test.Wpf

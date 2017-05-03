@@ -7,11 +7,11 @@ using Test.Common.Enities;
 
 namespace Test.PathFinder
 {
-    public class DefaultSearcher
+    public class DefaultFinder
     {
         private Graph graph;
 
-        public DefaultSearcher(Graph graph)
+        public DefaultFinder(Graph graph)
         {
             this.graph = graph;
         }

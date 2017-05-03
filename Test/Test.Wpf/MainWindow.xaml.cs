@@ -55,7 +55,7 @@ namespace Test.Wpf
             graph.Attr.LayerDirection = LayerDirection.LR;
             graphViewer.Graph = graph; // throws exception
       
-            var searcher = new DefaultSearcher(data);
+            var searcher = new DefaultFinder(data);
             var result = searcher.Search("1", "7");
         }
     }

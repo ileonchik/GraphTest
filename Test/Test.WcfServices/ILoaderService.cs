@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.ServiceModel.Web;
-using Test.WcfServices.Entities;
+﻿using System.ServiceModel;
 
 namespace Test.WcfServices
 {

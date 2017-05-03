@@ -45,10 +45,16 @@ namespace Test.PathFinder
             Queue<int> nodesVisited = new Queue<int>();
             var edges = new int[adjaciesMatrix.Length, adjaciesMatrix.Length];
             nodesNotVisited.Enqueue(start);
-
+            var presvious = new Dictionary<int,int>();
+            int index = -1;
             while (nodesNotVisited.Count != 0)
             {
-                int index = nodesNotVisited.Dequeue();
+                var prev = index;
+                index = nodesNotVisited.Dequeue();
+                if (prev >= 0)
+                {
+                    presvious.Add(index, prev);
+                }
                 if (index == stop)
                 {
                     break;
@@ -68,8 +74,16 @@ namespace Test.PathFinder
                     else edges[index, j] = 0;
 
                 }
-                result.Add(index);
+                
             }
+            result.Add(stop);
+            var next = presvious[stop];
+            while (next!=start)
+            {
+                result.Add(next);
+                next = presvious[next];
+            }
+            result.Add(start);
             return result;
         }
     }

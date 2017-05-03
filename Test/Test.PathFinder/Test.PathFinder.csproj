@@ -43,6 +43,8 @@
     <Compile Include="BaseFinder.cs" />
     <Compile Include="DefaultFinder.cs" />
     <Compile Include="DijkstraFinder.cs" />
+    <Compile Include="FinderFactory.cs" />
+    <Compile Include="FinderType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

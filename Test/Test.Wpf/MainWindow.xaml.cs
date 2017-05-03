@@ -22,6 +22,7 @@ namespace Test.Wpf
     /// </summary>
     public partial class MainWindow : Window
     {
+        Button calculate = new Button();
         Grid mainGrid = new Grid();
         DockPanel graphViewerPanel = new DockPanel();
         ToolBar toolBar = new ToolBar();
@@ -30,13 +31,15 @@ namespace Test.Wpf
         {
             InitializeComponent();
   
-            Button calculate = new Button();
+           
             calculate.Click+=CalculateOnClick;
+            calculate.Content = "Calculate";
+            calculate.IsEnabled = false;
             Loaded += Window_Loaded;
             graphViewerPanel.ClipToBounds = true;
             mainGrid.Children.Add(toolBar);
             toolBar.VerticalAlignment = VerticalAlignment.Top;
-
+            toolBar.Items.Add(calculate);
             mainGrid.Children.Add(graphViewerPanel);
             graphViewer.BindToPanel(graphViewerPanel);
             Content = mainGrid;
@@ -96,9 +99,13 @@ namespace Test.Wpf
                 }
                 else
                 {
-                    var drawingNode = (Node)node.DrawingObject;
-                    drawingNode.Attr.FillColor = Color.Red;
-                    stop = node.Node.Id;
+                    if (node.Node.Id != start)
+                    {
+                        var drawingNode = (Node) node.DrawingObject;
+                        drawingNode.Attr.FillColor = Color.Red;
+                        stop = node.Node.Id;
+                        calculate.IsEnabled = true;
+                    }
                 }
             }
         }

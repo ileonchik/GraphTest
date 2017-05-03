@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Test.Common.Interfaces
 {
-    class IRepository
+    public interface IRepository<T>
     {
+        T Get();
     }
 }

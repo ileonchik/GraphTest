@@ -37,11 +37,16 @@ namespace Test.Wpf
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            var respository = new GraphRepository();
+            var data = respository.Get();
             GraphViewer graphViewer = new GraphViewer();
             graphViewer.BindToPanel(Panel);
             Graph graph = new Graph();
 
-            graph.AddEdge("A", "B");
+            foreach (var adj in data.Adjacencies)
+            {
+                graph.AddEdge(adj.Key,adj.Value);
+            }
             graph.Attr.LayerDirection = LayerDirection.LR;
             graphViewer.Graph = graph; // throws exception
         }

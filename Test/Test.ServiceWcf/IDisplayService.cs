@@ -3,7 +3,7 @@ using Test.WcfServices.Entities;
 
 namespace Test.WcfServices
 {
-    [ServiceContract]
+    [ServiceContract(Namespace = "http://test.com/DisplayService")]
     public interface IDisplayService
     {
         [OperationContract]

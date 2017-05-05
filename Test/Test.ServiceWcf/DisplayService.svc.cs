@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
-using System.ServiceModel.Web;
-using System.Text;
 using Test.Common.Enities;
 using Test.Database;
 using Test.WcfServices.Entities;
@@ -17,7 +15,13 @@ namespace Test.WcfServices
     {
         public Graph GetGraph()
         {
-            throw new NotImplementedException();
+            var result = new Graph();
+            using (var ctx = new TestDbContext())
+            {
+                result.Adjacencies = ctx.Adjacencies.ToList();
+                result.Nodes = ctx.Nodes.ToList();
+            }
+            return result;
         }
     }
 }

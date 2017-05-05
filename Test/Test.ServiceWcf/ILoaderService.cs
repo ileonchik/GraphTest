@@ -2,9 +2,9 @@
 
 namespace Test.WcfServices
 {
-   
 
-    [ServiceContract]
+    [ServiceContract(Namespace = "http://test.com/LoaderService")]
+
     public interface ILoaderService
     {
 

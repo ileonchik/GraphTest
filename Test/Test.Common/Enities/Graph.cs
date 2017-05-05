@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Test.Common.Enities
 {
@@ -27,7 +28,9 @@ namespace Test.Common.Enities
         {
             foreach (var adj in adjacencies)
             {
-                Adjacencies.Add(new KeyValuePair<string, string>(adj.Start.UniqueId, adj.Stop.UniqueId));
+                var startNode = nodes.FirstOrDefault(n => n.Id == adj.StartId);
+                var stopNode = nodes.FirstOrDefault(n => n.Id == adj.StopId);
+                Adjacencies.Add(new KeyValuePair<string, string>(startNode.UniqueId, stopNode.UniqueId));
             }
             foreach (var node in nodes)
             {

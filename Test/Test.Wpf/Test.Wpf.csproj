@@ -76,6 +76,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Service References\FinderServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\ServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -119,6 +124,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\FinderServiceReference\FinderService.wsdl" />
     <None Include="Service References\ServiceReference\DisplayService.wsdl" />
     <None Include="Service References\ServiceReference\DisplayService.xsd">
       <SubType>Designer</SubType>
@@ -144,23 +150,12 @@
       <Project>{9a202fb3-532c-4e35-99b3-30dd59edd553}</Project>
       <Name>Test.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Test.Database\Test.Database.csproj">
-      <Project>{daf09380-db26-4c9d-ac25-863688922b63}</Project>
-      <Name>Test.Database</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Test.PathFinder\Test.PathFinder.csproj">
-      <Project>{061bed7d-0196-4005-93dd-79001f19aa9d}</Project>
-      <Name>Test.PathFinder</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Test.XmlReader\Test.XmlReader.csproj">
-      <Project>{1c307349-79cb-4030-bb47-d0a056e7b6cc}</Project>
-      <Name>Test.XmlReader</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\FinderServiceReference\" />
     <WCFMetadataStorage Include="Service References\ServiceReference\" />
   </ItemGroup>
   <ItemGroup>
@@ -174,6 +169,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\ServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FinderServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FinderServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FinderServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

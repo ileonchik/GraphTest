@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Microsoft.Msagl.Drawing;
 using Microsoft.Msagl.WpfGraphControl;
-using Test.PathFinder;
 
 namespace Test.Wpf
 {
@@ -50,8 +40,10 @@ namespace Test.Wpf
         {
             var respository = new GraphRepository();
             var data = respository.Get();
-            var finder = FinderFactory.GetFinder(FinderType.Dijkstra, data);
-            var result = finder.Find(start, stop);
+
+            var finder = new FinderServiceReference.FinderServiceClient();
+
+            var result = finder.FindPath(start, stop).ToList();
             ShowPath(graphViewer, data, result, start, stop);
         }
 

@@ -74,7 +74,11 @@
     <Compile Include="Entities\Graph.cs" />
     <Compile Include="Entities\WcfAdjacency.cs" />
     <Compile Include="IDisplayService.cs" />
+    <Compile Include="IFinderService.cs" />
     <Compile Include="ILoaderService.cs" />
+    <Compile Include="FinderService.svc.cs">
+      <DependentUpon>FinderService.svc</DependentUpon>
+    </Compile>
     <Compile Include="LoaderService.svc.cs">
       <DependentUpon>LoaderService.svc</DependentUpon>
     </Compile>
@@ -87,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DisplayService.svc" />
+    <Content Include="FinderService.svc" />
     <Content Include="LoaderService.svc" />
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +102,10 @@
     <ProjectReference Include="..\Test.Database\Test.Database.csproj">
       <Project>{daf09380-db26-4c9d-ac25-863688922b63}</Project>
       <Name>Test.Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Test.PathFinder\Test.PathFinder.csproj">
+      <Project>{061bed7d-0196-4005-93dd-79001f19aa9d}</Project>
+      <Name>Test.PathFinder</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

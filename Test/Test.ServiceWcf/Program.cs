@@ -13,7 +13,7 @@ namespace Test.ServiceWcf
     {
         static void Main(string[] args)
         {
-            new HybridServiceWcf(new Type[] { typeof(DisplayService) ,typeof(LoaderService)}).Run(args);
+            new HybridServiceWcf(new Type[] { typeof(DisplayService) ,typeof(LoaderService),typeof(FinderService)}).Run(args);
         }
     }
 }

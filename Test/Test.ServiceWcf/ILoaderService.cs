@@ -1,6 +1,6 @@
 ﻿using System.ServiceModel;
 
-namespace Test.WcfServices
+namespace Test.ServiceWcf
 {
 
     [ServiceContract(Namespace = "http://test.com/LoaderService")]

@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Test.Common.Enities;
 using Test.Common.Interfaces;
-using Test.XmlReader;
 
 namespace Test.Wpf
 {
@@ -11,21 +10,26 @@ namespace Test.Wpf
     {
         public Graph Get()
         {
-            Graph result;
-            List<KeyValuePair<string,string>> adjacencies= new List<KeyValuePair<string, string>>();
+           
             List<Node> nodes;
-            /*   using (var ctx = new TestDbContext())
-               {
-                   result = new Graph(ctx.Adjacencies.ToList(),ctx.Nodes.ToList());
-               }
-            return result;*/
-            var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            var files = Directory.GetFiles(path, "*.xml");
-            NodesReader nodeasReader = new NodesReader();
-            return  nodeasReader.Read(files);
+            try
+            {
+  var service = new ServiceReference.DisplayServiceClient();
+           var wcfGraph =  service.GetGraph();
+                var adjacencies = new List<KeyValuePair<string,string>>();
+                foreach (var adj in wcfGraph.Adjacencies)
+                {
+                    adjacencies.Add(new KeyValuePair<string, string>(adj.Start, adj.Stop));
+                }
+ Graph result= new Graph(adjacencies,wcfGraph.Nodes.ToList());
+            return result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
 
-        
-            
         }
     }
 }

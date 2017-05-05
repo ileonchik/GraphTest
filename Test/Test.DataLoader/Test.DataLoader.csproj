@@ -56,7 +56,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Service References\ServiceReference1\LoaderService.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Test.Common\Test.Common.csproj">
@@ -85,6 +84,7 @@
     <None Include="Service References\ServiceReference1\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\ServiceReference1\LoaderService1.wsdl" />
     <None Include="Service References\ServiceReference1\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

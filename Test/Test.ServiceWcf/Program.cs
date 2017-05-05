@@ -5,7 +5,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using HybridService.Wcf;
-using Test.WcfServices;
+
 
 namespace Test.ServiceWcf
 {

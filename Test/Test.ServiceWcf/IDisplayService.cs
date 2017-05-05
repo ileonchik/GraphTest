@@ -1,7 +1,7 @@
 ﻿using System.ServiceModel;
-using Test.WcfServices.Entities;
+using Test.ServiceWcf.Entities;
 
-namespace Test.WcfServices
+namespace Test.ServiceWcf
 {
     [ServiceContract(Namespace = "http://test.com/DisplayService")]
     public interface IDisplayService

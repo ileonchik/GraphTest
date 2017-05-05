@@ -10,7 +10,7 @@ namespace Test.Database
 {
     public class TestDbContext : DbContext
     {
-        public TestDbContext() : base()
+        public TestDbContext(string connectionStringName) : base(connectionStringName)
         {
             System.Data.Entity.Database.SetInitializer(new DropCreateDatabaseIfModelChanges<TestDbContext>());
         }

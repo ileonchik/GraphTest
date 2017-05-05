@@ -14,6 +14,15 @@ namespace Test.Common.Enities
             Adjacencies = new List<KeyValuePair<string, string>>();
         }
 
+        public Graph(List<KeyValuePair<string,string>> adjacencies, List<DbNode> nodes) : this()
+        {
+            Adjacencies.AddRange(adjacencies);
+            foreach (var node in nodes)
+            {
+                NodesList.Add(node.Label, new Node(node));
+            }
+        }
+
         public Graph(List<DbAdjacency> adjacencies,List<DbNode> nodes  ):this()
         {
             foreach (var adj in adjacencies)

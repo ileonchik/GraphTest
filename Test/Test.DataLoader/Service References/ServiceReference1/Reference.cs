@@ -12,25 +12,25 @@ namespace Test.DataLoader.ServiceReference1 {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.ILoaderService")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="http://test.com/LoaderService", ConfigurationName="ServiceReference1.ILoaderService")]
     public interface ILoaderService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoaderService/SaveAdjacency", ReplyAction="http://tempuri.org/ILoaderService/SaveAdjacencyResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://test.com/LoaderService/ILoaderService/SaveAdjacency", ReplyAction="http://test.com/LoaderService/ILoaderService/SaveAdjacencyResponse")]
         void SaveAdjacency(string startNodeId, string endNodeId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoaderService/SaveAdjacency", ReplyAction="http://tempuri.org/ILoaderService/SaveAdjacencyResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://test.com/LoaderService/ILoaderService/SaveAdjacency", ReplyAction="http://test.com/LoaderService/ILoaderService/SaveAdjacencyResponse")]
         System.Threading.Tasks.Task SaveAdjacencyAsync(string startNodeId, string endNodeId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoaderService/SaveNode", ReplyAction="http://tempuri.org/ILoaderService/SaveNodeResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://test.com/LoaderService/ILoaderService/SaveNode", ReplyAction="http://test.com/LoaderService/ILoaderService/SaveNodeResponse")]
         void SaveNode(string id, string label);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoaderService/SaveNode", ReplyAction="http://tempuri.org/ILoaderService/SaveNodeResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://test.com/LoaderService/ILoaderService/SaveNode", ReplyAction="http://test.com/LoaderService/ILoaderService/SaveNodeResponse")]
         System.Threading.Tasks.Task SaveNodeAsync(string id, string label);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoaderService/ClearDatabase", ReplyAction="http://tempuri.org/ILoaderService/ClearDatabaseResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://test.com/LoaderService/ILoaderService/ClearDatabase", ReplyAction="http://test.com/LoaderService/ILoaderService/ClearDatabaseResponse")]
         void ClearDatabase();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoaderService/ClearDatabase", ReplyAction="http://tempuri.org/ILoaderService/ClearDatabaseResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://test.com/LoaderService/ILoaderService/ClearDatabase", ReplyAction="http://test.com/LoaderService/ILoaderService/ClearDatabaseResponse")]
         System.Threading.Tasks.Task ClearDatabaseAsync();
     }
     

@@ -1,22 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.ServiceModel;
-
-using System.Text;
 using Test.Common.Enities;
 using Test.Database;
-using Test.WcfServices.Entities;
 
-namespace Test.WcfServices
+
+namespace Test.ServiceWcf
 {
     [ServiceBehavior(Namespace = "http://test.com/LoaderService")]
     public class LoaderService : ILoaderService
     {
         public void SaveNode(string id, string label)
         {
-            using (var ctx = new TestDbContext())
+            using (var ctx = new TestDbContext("TestDBCompact"))
             {
 
                 try
@@ -36,7 +32,7 @@ namespace Test.WcfServices
 
         public void SaveAdjacency(string startNodeId, string endNodeId)
         {
-            using (var ctx = new TestDbContext())
+            using (var ctx = new TestDbContext("TestDBCompact"))
             {
                 ctx.Adjacencies.Add(new DbAdjacency()
                 {
@@ -52,7 +48,7 @@ namespace Test.WcfServices
         {
             try
             {
-                using (var ctx = new TestDbContext())
+                using (var ctx = new TestDbContext("TestDBCompact"))
                 {
                     ctx.Database.ExecuteSqlCommand("delete from Nodes");
                     ctx.Database.ExecuteSqlCommand("delete from Adjacencies");
